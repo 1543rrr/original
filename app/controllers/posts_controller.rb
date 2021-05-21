@@ -4,14 +4,22 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def new
+    @post = current_user.posts.new
   end
 
   def create
-    post = Post.create!(post_params)
-    redirect_to post
+    post = current_user.posts.new(post_params)
+    if post.save
+      flash[:notice] = "投稿が完了しました。"
+      redirect_to posts_path
+    else
+      flash[:error_messages] = post.errors.full_messages
+      render :new
+    end
   end
 
   def edit
