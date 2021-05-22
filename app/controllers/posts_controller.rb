@@ -23,7 +23,6 @@ class PostsController < ApplicationController
       flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
-  end  
 
   def edit
     @post = Post.find(params[:id])
@@ -41,7 +40,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy!
-    redirect_to root_path
+    redirect_to root_path, alert: "削除しました！"
   end
 
   private
