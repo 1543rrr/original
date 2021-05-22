@@ -17,11 +17,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id= 1
     if @post.save
-      redirect_to root_path
-    else  
-    render :new
+      redirect_to post, notice: "投稿しました！"
     end
-  end  
 
   def edit
     @post = Post.find(6)
@@ -30,13 +27,13 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     post.update!(post_params)
-    redirect_to post
+    redirect_to @post, notice: "更新しました！"
   end
 
   def destroy
     post = Post.find(params[:id])
     post.destroy!
-    redirect_to root_path
+    redirect_to root_path, alert: "削除しました！"
   end
 
   private
