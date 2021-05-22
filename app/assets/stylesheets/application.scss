@@ -21,3 +21,18 @@
 input {
   border: 2px solid red;
 }
+
+@import "bootstrap/scss/bootstrap";
+
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/regular";
+
+
+.field_with_errors {
+  display: contents;
+
+  input {
+    border: 2px solid red;
+  }
+}
