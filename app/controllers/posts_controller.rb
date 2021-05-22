@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post.user_id= 1
   end
 
   def new
@@ -23,8 +24,9 @@ class PostsController < ApplicationController
   end  
 
   def edit
+    @post = Post.find(6)
   end
-
+  
   def update
     post = Post.find(params[:id])
     post.update!(post_params)
