@@ -3,16 +3,18 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  # def show
+    # @post = Post.find(params[:id])
+  # end
 
   def new
     @post = Post.new
   end
 
   def create 
+    # binding.pry
     @post = Post.new(post_params)
+    @post.user_id= 1
     if @post.save
       redirect_to root_path
     else  
@@ -28,8 +30,7 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy!
-    redirect_to root_path
+    post.destroy
   end
 
   private
