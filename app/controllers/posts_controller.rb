@@ -8,19 +8,17 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = current_user.posts.new
+    @post = Post.new
   end
 
-  def create
-    post = current_user.posts.new(post_params)
-    if post.save
-      flash[:notice] = "投稿が完了しました。"
-      redirect_to posts_path
-    else
-      flash[:error_messages] = post.errors.full_messages
-      render :new
+  def create 
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to root_path
+    else  
+    render :new
     end
-  end
+  end  
 
   def edit
   end
@@ -29,6 +27,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:id])
+    post.destroy!
+    redirect_to root_path
   end
 
   private
