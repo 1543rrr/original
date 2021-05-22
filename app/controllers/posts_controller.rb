@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id= 1
     if @post.save
-      redirect_to root_path, notice: "投稿しました"
+      redirect_to @post, notice: "投稿しました"
     else  
       flash.now[:alert] = "投稿に失敗しました"
       render :new
@@ -25,11 +25,11 @@ class PostsController < ApplicationController
   end  
 
   def edit
-    @post = Post.find(6)
+    @post = Post.find(params[:id])
   end
   
   def update
-    if @post.update(post_params)
+    if @post.update(params[:id])
       redirect_to @post, notice: "更新しました"
     else
       flash.now[:alert] = "更新に失敗しました"
