@@ -1,5 +1,7 @@
 <h1>編集</h1>
-<%= form_with model: @post, local: true do |form| %>
+<%= render "form", button_value: "更新" %>
+<%# <%= render "form" %>
+<%# <%= form_with model: @post, local: true do |form| %>
   <div>
     <%= form.label :title, "タイトル" %>
     <%= form.text_field :title %>
