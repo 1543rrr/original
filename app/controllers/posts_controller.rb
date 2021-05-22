@@ -17,20 +17,24 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id= 1
     if @post.save
-      redirect_to root_path
+      redirect_to @post, notice: "投稿しました"
     else  
-    render :new
+      flash.now[:alert] = "投稿に失敗しました"
+      render :new
     end
   end  
 
   def edit
-    @post = Post.find(6)
+    @post = Post.find(params[:id])
   end
   
   def update
-    post = Post.find(params[:id])
-    post.update!(post_params)
-    redirect_to post
+    if @post.update(params[:id])
+      redirect_to @post, notice: "更新しました"
+    else
+      flash.now[:alert] = "更新に失敗しました"
+      render :edit
+    end
   end
 
   def destroy
