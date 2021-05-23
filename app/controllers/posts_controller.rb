@@ -1,56 +1,56 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: :new
   def index
-    @posts = Post.order(id: :asc)
+    @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
-    @post.user_id= 1
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.new
   end
 
-  def create 
-    # binding.pry
-    @post = Post.new(post_params)
-    @post.user_id= 1
-    if @post.save
-      redirect_to @post, notice: "投稿しました"
-    else  
-      flash.now[:alert] = "投稿に失敗しました"
+  def create
+    post = current_user.posts.new(post_path)
+    if post.save
+      flash[:notice] = "投稿が完了しました。"
+      redirect_to posts_path
+    else
+      flash[:error_messages] = post.errors.full_messages
       render :new
     end
+  end
+
+ 
+    def destroy
+      @post = Post.find(params[:id])
+      @post.destroy
+      redirect_to posts_path
+    end
+  
 
   def edit
     @post = Post.find(params[:id])
   end
   
   def update
-    if @post.update(params[:id])
-      redirect_to @post, notice: "更新しました"
+    @post = Post.find(params[:id])
+    # @post.update(post_path)
+    if @board.save
+      redirect_to post_path(@post.id)
     else
-      flash.now[:alert] = "更新に失敗しました"
-      render :edit
+      flash[:error_messages] = @post.errors.full_messages
+      flash[:post] = @post
+      redirect_to edit_post_path
     end
   end
 
-  def destroy
-    post = Post.find(params[:id])
-    post.destroy!
-    redirect_to root_path, alert: "削除しました！"
-  end
-
   private
-  
-  def set_post
-    @post = Post.find(params[:id])
-  end
 
-  def post_params
-    params.require(:post).permit(:title, :content)
-  end
-
+    def board_params
+      params.require(:board).permit(:content, :user_id)
+    end
 end
+
