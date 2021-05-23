@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
+  mount_uploader :post_image, ImageUploader
   belongs_to :user, optional: true
-  has_many :photos, dependent: :destroy
-  accepts_nested_attributes_for :photos
+
+  
 
   has_many :photos
   has_many :likes

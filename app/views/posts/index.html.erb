@@ -24,7 +24,11 @@
         <td><%= post.title %></td>
         <td>
           <%= link_to "詳細", post %>
-          <%= link_to "編集", edit_post_path %>
+
+          <%= link_to "編集", post %>
+
+    
+
           <%= link_to "削除", post, method: :delete, data: { confirm: "削除しますか?" } %>
         </td>
       </tr>
