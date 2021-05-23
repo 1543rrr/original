@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new
+    @post.photos.build
   end
 
   def create
