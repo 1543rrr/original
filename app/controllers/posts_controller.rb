@@ -32,11 +32,13 @@ class PostsController < ApplicationController
   
 
   def edit
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
+    # binding.pry
   end
   
   def update
-    @post = Post.find(params[:id])
+    # binding.pry
+    post = Post.find(params[:id])
     # @post.update(post_path)
     if @postd.save
       redirect_to post_path(@post.id)
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
 
   private
 
-    def board_params
-      params.require(:board).permit(:content, :user_id)
+    def post_params
+      params.require(:post).permit(:content, :title)
     end
 end
