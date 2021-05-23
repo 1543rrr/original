@@ -5,7 +5,7 @@
     <header>
       <%= render "layouts/header" %>
     </header>
-<%= link_to '<i class="far fa-edit"></i> 編集'.html_safe, "#", class: "btn btn-success" %>
+<%= link_to '<i class="far fa-edit"></i> 編集'.html_safe, edit_post_path(@posts), class: "btn btn-success" %>
 <%= link_to "#", class: "btn btn-danger" do %>
   <i class="far fa-trash-alt"></i> 削除
 <% end %>
@@ -24,8 +24,11 @@
         <td><%= post.title %></td>
         <td>
           <%= link_to "詳細", post %>
-          <%= link_to "編集", edit_post_path(post) %>
+
           <%= link_to "編集", post %>
+
+    
+
           <%= link_to "削除", post, method: :delete, data: { confirm: "削除しますか?" } %>
         </td>
       </tr>

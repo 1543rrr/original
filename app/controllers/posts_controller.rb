@@ -51,13 +51,9 @@ class PostsController < ApplicationController
 
   private
 
-<<<<<<< Updated upstream
-    def board_params
-      params.require(:board).permit(:content, :user_id)
-=======
     def post_params
       params.require(:post).permit(:content, :title, :post_image, :user_id)
->>>>>>> Stashed changes
     end
 end
+
 
