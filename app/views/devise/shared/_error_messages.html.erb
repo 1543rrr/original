@@ -1,9 +1,8 @@
-<% if flash[:error_messages] %>
-  <div class="vali_alert">
-    <ul>
-      <% flash[:error_messages].each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+<% if @post.errors.any? %>
+  <% @post.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger" role="alert">
+      <a href="#" class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
 <% end %>
