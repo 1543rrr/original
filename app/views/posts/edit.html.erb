@@ -1,14 +1,37 @@
+<div class="post_wrapper">
+  <div class="post_wrapper__content">
+    <div class="post_wrapper__content__post_form">
+      <h3>
+        <span>投稿編集</span>
+      </h3>
+     <%= render partial: 'form' %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1>編集</h1>
 <%= render "form", button_value: "更新" %>
-<%= render "form" %>
+<%# <%= render "form" %>
 <%= form_with model: @post, local: true do |form| %>
   <div>
-    <%= form.label :title, "タイトル" %>
-    <%= form.text_field :title %>
+    <%# <%= form.label :title, "タイトル" %>
+    <%= form.text_field :タイトル %>
   </div>
   <div>
     <%# <%= form.label :content, "内容" %>
-    <%# <%= form.text_field :content %>
+    <%= form.text_field :内容 %>
   </div>
   <div>
     <%= form.submit "送信" %>
