@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     # @post.update(post_path)
-    if @board.save
+    if @postd.save
       redirect_to post_path(@post.id)
     else
       flash[:error_messages] = @post.errors.full_messages
@@ -53,4 +53,3 @@ class PostsController < ApplicationController
       params.require(:board).permit(:content, :user_id)
     end
 end
-

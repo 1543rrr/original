@@ -1,12 +1,43 @@
-<%= render "layouts/error_messages" %>
-<%= form_with model: @post, local: true do |form| %>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-    <%= form.submit button_tag %>
+<%= render 'shared/error_messages' %>
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <div class="form_area">
+    <div class="form_area__field">
+      <% f.hidden_field :user_id %>
+      <%= f.text_area :content, rows: 10, placeholder: "投稿内容を入力" %>
+    </div>
+  
+    <div class="form_area__action">
+      <%= f.submit '投稿', class: 'form_area__action__btn' %>
+    </div>
   </div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# /<%= render "layouts/error_messages" %> %>
+<%# <%= form_with model: @post, local: true do |form| %> %>
+    <%# <%= form.label :title %> %>
+    <%# <%= form.text_field :title %> %>
+  <%# </div> %>
+  <%# <div> %>
+    <%# <%= form.label :content %> %>
+    <%# <%= form.text_field :content %> %>
+  <%# </div> %>
+    <%# <%= form.submit button_tag %> %>
+  <%# </div> %>
+<%# <% end %> %>
